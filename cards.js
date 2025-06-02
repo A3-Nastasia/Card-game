@@ -74,8 +74,7 @@ function createCardDiv(card) {
 
 let cards = [];
 // Количество картинок в папке (один экземпляр)
-let amountOfCards = 2;
-// let amountOfCards = 7;
+let amountOfCards = 7;
 
 // Автоматизация записи в поле класса карточки наименования картинки
 for (let i = 1; i <= amountOfCards; i++) {

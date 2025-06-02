@@ -1,13 +1,14 @@
 let selectedCards = [];
 
-/**
- * 
- * @param {number} ms 
- * @returns {Promise<void>}
- */
-function delay(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-}
+
+// Получить кол-во карточек для красивого отображения
+let container = document.querySelector('.div_main');
+let elements = container.querySelectorAll('.div_main_second');
+const count = elements.length;
+console.log(count);
+const cols = count / 2;
+container.style.setProperty('--cols', cols);
+
 
 /**
  * Что происходит после правильного сбора всех карточек
@@ -20,7 +21,6 @@ function executeWithLoading() {
     setTimeout(() => {
         // Скрываем окно загрузки
         loadingElement.style.display = 'none';
-        console.log('Загрузка завершена');
 
         // Удаляем класс 'disabled' после завершения загрузки
         document.querySelectorAll('.card').forEach(card => card.classList.remove('disabled'));
@@ -81,14 +81,13 @@ $('.card').click(function () {
         return card.classList.contains('compared');
     });
 
-    if (isAllCompared) {
-        alert('Все карточки собраны');
-        executeWithLoading()
-
+    if (isAllCompared) {        
         // Задержка на секунду, чтобы ничо не нажимали
         setTimeout(() => {
             document.querySelectorAll('.card').forEach(card => card.classList.remove('flipped'));
             document.querySelectorAll('.card').forEach(card => card.classList.remove('compared'));
+            executeWithLoading()
+            alert('Все карточки собраны');
         }, 1000);
     }
 });
