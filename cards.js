@@ -6,6 +6,19 @@ class Card {
     }
 }
 
+let cards = [];
+// Количество картинок в папке (один экземпляр)
+let amountOfCards = 7;
+
+// Автоматизация записи в поле класса карточки наименования картинки
+for (let i = 1; i <= amountOfCards; i++) {
+    cards.push(new Card(i, `./images/${i}.jpg`));
+}
+
+// 2 экземпляра с перемешиванными картинками
+addShuffled(cards);
+addShuffled(cards);
+
 /**
  * Перемешивание и добавление в массив карточек
  * @param {Card} array 
@@ -71,16 +84,3 @@ function createCardDiv(card) {
         divCard.classList.toggle('flipped');
     });
 }
-
-let cards = [];
-// Количество картинок в папке (один экземпляр)
-let amountOfCards = 7;
-
-// Автоматизация записи в поле класса карточки наименования картинки
-for (let i = 1; i <= amountOfCards; i++) {
-    cards.push(new Card(i, `./images/${i}.jpg`));
-}
-
-// 2 экземпляра с перемешиванными картинками
-addShuffled(cards);
-addShuffled(cards);

@@ -3,13 +3,15 @@ body{
     height: 100vh;
     overflow-x: hidden;
     background: linear-gradient(80deg, navy, black);
+    display: flex;
+    align-items: center;
 }
 
 .div_main {
     background-color: transparent;
     width: 100%;
     display: grid;
-    grid-template-rows: repeat(auto-fill, minmax(0px, 1fr));
+    grid-template-rows: repeat(150px, minmax(0px, 1fr));
     grid-template-columns: repeat(var(--cols), minmax(0, 1fr));
     gap: 10px;
     justify-content: center;
@@ -19,6 +21,8 @@ body{
 }
 
 .div_main_second{
+    box-sizing: border-box;
+    display: flex;
     justify-content: center;
     align-items: start;
     perspective: 1000px;
@@ -38,6 +42,8 @@ body{
     gap:10px;
     box-shadow: 2px 5px 5px rgb(139, 56, 222);
     aspect-ratio: 3 / 4;
+    height: 18vw;
+    width: auto;
     transition: transform 0.8s; 
     transform-style: preserve-3d;
 }

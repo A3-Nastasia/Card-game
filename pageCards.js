@@ -1,12 +1,10 @@
 let selectedCards = [];
-
-
 // Получить кол-во карточек для красивого отображения
 let container = document.querySelector('.div_main');
 let elements = container.querySelectorAll('.div_main_second');
 const count = elements.length;
-console.log(count);
 const cols = count / 2;
+// Нужно для красивого отображения кол-ва карт на строках страницы
 container.style.setProperty('--cols', cols);
 
 
@@ -15,7 +13,12 @@ container.style.setProperty('--cols', cols);
  */
 function executeWithLoading() {
     const loadingElement = document.getElementById('loading');
+    loadingElement.textContent = "Все карточки собраны";
     loadingElement.style.display = 'block'; // Показываем окно загрузки
+    
+    setTimeout(()=>{
+        loadingElement.textContent = "Обновление карт";
+    }, 1500);
 
     // Задержка в 2 секунды
     setTimeout(() => {
@@ -42,12 +45,12 @@ document.querySelectorAll('.card').forEach(card => {
 
 // Сама логика при нажатии на карточки
 $('.card').click(function () {
+    const classNameSelected = selectedCards[0].classList[1];
     if (selectedCards.length === 2) {
         // Если классы карточек совпадают
         /* (конечно, не очень хорошо, что через классы, 
             потому что их поправить можно, 
             но я без понятия что еще сделать и как)*/
-        const classNameSelected = selectedCards[0].classList[1];
         if (classNameSelected === selectedCards[1].classList[1]) {
             // Сделать карточки недоступными, т.к. они выбраны правильно
             $(`.${classNameSelected}`).addClass('disabled');
@@ -84,10 +87,10 @@ $('.card').click(function () {
     if (isAllCompared) {        
         // Задержка на секунду, чтобы ничо не нажимали
         setTimeout(() => {
+            executeWithLoading()
+            $(`.${classNameSelected}`).find('.card_back').css('opacity', '1');
             document.querySelectorAll('.card').forEach(card => card.classList.remove('flipped'));
             document.querySelectorAll('.card').forEach(card => card.classList.remove('compared'));
-            executeWithLoading()
-            alert('Все карточки собраны');
         }, 1000);
     }
 });
